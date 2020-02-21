@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePostCommentRepliesTable extends Migration
+class CreateChaletOptionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,10 @@ class CreatePostCommentRepliesTable extends Migration
      */
     public function up()
     {
-        Schema::create('post_comment_replies', function (Blueprint $table) {
+        Schema::create('chalet_options', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->unsignedInteger('type');
+            $table->string('value');
             $table->timestamps();
         });
     }
@@ -26,6 +28,6 @@ class CreatePostCommentRepliesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('post_comment_replies');
+        Schema::dropIfExists('chalet_options');
     }
 }
