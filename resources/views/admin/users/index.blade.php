@@ -1,13 +1,7 @@
 @extends('admin.layouts.master')
 @section('head')
     <title>{{__('admin.general.users')}} - {{__('admin.general.list')}} {{__('admin.general.users')}}</title>
-    <link href="{{asset('admin/plugins/datatables/jquery.dataTables.min.css')}}" rel="stylesheet" type="text/css"/>
-    <link href="{{asset('admin/plugins/font-awesome-4.7.0/css/font-awesome.min.css')}}" rel="stylesheet" type="text/css"/>
-    <link href="{{asset('admin/plugins/datatables/buttons.bootstrap.min.css')}}" rel="stylesheet" type="text/css"/>
-    <link href="{{asset('admin/plugins/datatables/fixedHeader.bootstrap.min.css')}}" rel="stylesheet" type="text/css"/>
-    <link href="{{asset('admin/plugins/datatables/responsive.bootstrap.min.css')}}" rel="stylesheet" type="text/css"/>
-    <link href="{{asset('admin/plugins/datatables/dataTables.bootstrap.min.css')}}" rel="stylesheet" type="text/css"/>
-    <link href="{{asset('admin/plugins/datatables/scroller.bootstrap.min.css')}}" rel="stylesheet" type="text/css"/>
+    @include('admin.partials.datatable_styles')
 @endsection
 @section('content')
     <div class="">
@@ -20,49 +14,65 @@
                     <div class="panel panel-primary">
                         <div class="panel-body">
 
-                            <h4 class="m-b-30 m-t-0">{{__('admin.general.list')}} {{__('admin.general.users')}}</h4>
+                            <h4 class="m-b-30 m-t-0">{{__('admin.general.list')}} {{__('admin.general.users')}}
 
-                            <a href="{{ route('admin.users.create') }}" class="btn btn-primary btn-sm m-b-30 m-t-0 m-r-0 m-l-30" target="_blank">
+                            <a href="{{ route('admin.users.create') }}" class="btn btn-success  m-b-30 m-t-0 m-r-0 m-l-30 pull-right">
                                  <i class="fa fa-plus" aria-hidden="true"></i>
                                     {{__('admin.general.add')}} {{__('admin.general.user')}}
                             </a>
-
+                            </h4>
+                            <h4 class="text-center p-t-10 p-b-10 @error('success') bg-success @enderror @error('error') bg-danger @enderror">
+                                @error('success')
+                                {{$message}}
+                                @enderror
+                                @error('error')
+                                {{$message}}
+                                @enderror
+                            </h4>
                             <table id="datatable-responsive"
                                    class="table table-striped table-bordered dt-responsive nowrap"
                                    cellspacing="0" width="100%">
                                 <thead>
                                 <tr>
-                                    <th>Name</th>
-                                    <th>Email</th>
-                                    <th>Phone</th>
-                                    <th>Actions</th>
+                                    <th>{{__('admin.general.name')}}</th>
+                                    <th>{{__('admin.general.email')}}</th>
+                                    <th>{{__('admin.general.phone')}}</th>
+                                    <th>{{__('admin.general.role')}}</th>
+                                    <th>{{__('admin.general.actions')}}</th>
                                 </tr>
                                 </thead>
                                 <tbody>
                                 @foreach($users as $user)
+                                    @if(Gate::allows('view', $user))
                                     <tr>
                                         <td>{{$user->name}}</td>
                                         <td>{{$user->email}}</td>
                                         <td>{{$user->phone}}</td>
+                                        <td>@if($user->role){{__('admin.roles.'.$user->role->name)}}@endif</td>
                                         <td>
-                                            <a href="{{ route('admin.users.edit' , $user->id) }}" class="btn btn-primary btn-sm pull-left" target="_blank">
+                                            <a href="{{ route('admin.users.edit' , $user->id) }}" class="btn btn-primary btn-sm pull-left">
                                                 <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                                                  {{__('admin.general.edit')}} {{__('admin.general.user')}}
                                             </a>
-                                            <form action="{{route('admin.users.destroy', $user->id)}}" method="post" class="">
-                                                @method('DELETE')
-                                                @csrf
 
-                                                <button class="btn btn-danger btn-sm pull-right" type="submit">
+
+                                                <button class="btn btn-danger btn-sm m-l-10" onclick="deleteUser('{{$user->id}}')">
                                                 <i class="fa fa-trash-o" aria-hidden="true"></i>
                                                     {{__('admin.general.delete')}} {{__('admin.general.user')}}
                                                 </button>
-                                            </form>
                                         </td>
+                                        <form id="delete-{{$user->id}}" action="{{route('admin.users.destroy', $user->id)}}" method="post">
+                                            @method('DELETE')
+                                            @csrf
+                                        </form>
                                     </tr>
+                                    @endif
                                 @endforeach
                                 </tbody>
                             </table>
+                            <div class="text-center">
+                                {{$users->links()}}
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -71,12 +81,24 @@
     </div>
 @endsection
 @section('scripts')
-    <script src="{{asset('admin/plugins/datatables/jquery.dataTables.min.js')}}"></script>
-    <script src="{{asset('admin/plugins/datatables/dataTables.bootstrap.js')}}"></script>
-    <script src="{{asset('admin/plugins/datatables/dataTables.buttons.min.js')}}"></script>
-    <script src="{{asset('admin/plugins/datatables/buttons.bootstrap.min.js')}}"></script>
-    <script src="{{asset('admin/plugins/datatables/dataTables.responsive.min.js')}}"></script>
-    <script src="{{asset('admin/plugins/datatables/responsive.bootstrap.min.js')}}"></script>
-    <script src="{{asset('admin/plugins/datatables/dataTables.scroller.min.js')}}"></script>
-    <script src="{{asset('admin/pages/datatables.init.js')}}"></script>
+    @include('admin.partials.datatable_scripts')
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script>
+        function deleteUser(user_id){
+            swal({
+                title: "{{__('admin.general.sure')}}",
+                text: "{{__('admin.general.confirm?')}}",
+                icon: "warning",
+                buttons: ['{{__('admin.general.cancel')}}', '{{__('admin.general.confirm')}}'],
+                dangerMode: true,
+            })
+                .then((willDelete) => {
+                    if (willDelete) {
+                        $('#delete-'+user_id).submit();
+                    } else {
+                        return false;
+                    }
+                });
+        }
+    </script>
 @endsection

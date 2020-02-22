@@ -723,19 +723,19 @@ button.list-group-item {
   margin: 0px !important;
 }
 .m-r-5 {
-  margin-right: 5px;
+  margin-left: 5px;
 }
 .m-r-10 {
-  margin-right: 10px;
-}
-.m-r-15 {
-  margin-right: 15px !important;
-}
-.m-l-10 {
   margin-left: 10px;
 }
+.m-r-15 {
+  margin-left: 15px !important;
+}
+.m-l-10 {
+  margin-right: 10px;
+}
 .m-l-15 {
-  margin-left: 15px;
+  margin-right: 15px;
 }
 .m-t-5 {
   margin-top: 5px !important;
@@ -3760,4 +3760,13 @@ File: Responsive
   .hide-phone {
     display: none !important;
   }
+}
+div.dataTables_wrapper div.dataTables_filter {
+  text-align: left !important;
+}
+div.dataTables_wrapper div.dataTables_filter input {
+  margin-right: 5px !important;
+}
+.swal-text {
+    text-align: center;
 }

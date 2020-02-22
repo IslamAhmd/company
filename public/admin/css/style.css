@@ -3760,3 +3760,6 @@ File: Responsive
     display: none !important;
   }
 }
+.swal-text {
+  text-align: center;
+}

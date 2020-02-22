@@ -14,20 +14,19 @@ class RolesTableSeeder extends Seeder
     {
         $roles = [
 
-        	'admin',
-        	'supervisor',
-        	'writer',
-        	'user'
+        	['admin', 'Admin'],
+        	['supervisor', 'Supervisor'],
+        	['writer', 'Writer'],
+        	['user', 'Norma User']
 
         ];
-
-
 
         foreach ($roles as $role) {
         	
         	Role::create([
 
-        		'name' => $role,
+        		'name' => $role[0],
+                'display_name' => $role[1]
 
         	]);
 

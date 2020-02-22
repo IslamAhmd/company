@@ -144,6 +144,6 @@ return [
     |
     */
 
-    'attributes' => [],
+    'attributes' => ['role_id'=>'Role'],
 
 ];
