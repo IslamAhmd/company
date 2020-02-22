@@ -1,8 +1,8 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\Role;
-use App\User;
+use App\Models\Role;
+use App\Models\User;
 
 class UsersTableSeeder extends Seeder
 {
@@ -13,7 +13,7 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-        $superAdmin = Role::where('name', 'Super Admin')->first()->id;
+        $superAdmin = Role::where('name', 'admin')->first()->id;
 
         User::create([
 

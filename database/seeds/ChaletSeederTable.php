@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\ChaletOptions;
+use App\Models\ChaletOptions;
 
 class ChaletSeederTable extends Seeder
 {

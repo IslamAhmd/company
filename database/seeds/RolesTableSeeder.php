@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\Role;
+use App\Models\Role;
 
 class RolesTableSeeder extends Seeder
 {
@@ -14,10 +14,10 @@ class RolesTableSeeder extends Seeder
     {
         $roles = [
 
-        	'Super Admin',
-        	'Admin',
-        	'Writer',
-        	'User'
+        	'admin',
+        	'supervisor',
+        	'writer',
+        	'user'
 
         ];
 
