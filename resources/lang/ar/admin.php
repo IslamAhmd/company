@@ -1,5 +1,15 @@
 <?php
 return [
+    'sliders' => [
+        'top' => 'السلايدر العلوى',
+        'title' => 'السلايدرز',
+        'slider' => 'سلايدر',
+        'type' => "نوع الميديا",
+        'source' => "مصدر الميديا",
+        'value' => "محتوى الميديا",
+
+
+    ],
     'actions' => [
         'add' => 'تم إضافة :attr بنجاح.',
         'edit' => 'تم تعديل :attr بنجاح.',
@@ -12,11 +22,19 @@ return [
         'user' => 'مستخدم'
     ],
     'general' => [
+        'image'=> 'صورة',
+        'video'=> 'فيديو',
+        'upload' => "ملف مرفوع",
+        'file_upload'=> 'رفع ملف',
+        'file'=> 'الملف',
+        'link'=> 'رابط',
+        'the_link'=> 'الرابط',
         'title' => 'Construction Website',
         'menu' => 'القائمة',
         'sure' => 'متأكد ؟',
         'confirm?' => 'لا يمكنك العودة عن هذا القرار ..',
         'confirm' => 'تأكيد',
+        'main_page' => 'الصفحة الرئيسية',
         'cancel' => 'إلغاء',
         'dashboard' => 'لوحة التحكم',
         'search' => 'بحث',

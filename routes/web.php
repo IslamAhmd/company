@@ -20,6 +20,26 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => [ 'l
             Route::get('/', 'LandingController@index')->name('index');
             Route::resource('users', 'UsersController');
             Route::resource('projects', 'ProjectsController');
+            Route::resource('sliders/{type}', 'SlidersController', ['names'=>[
+                'index' => 'sliders.index',
+                'create' => 'sliders.create',
+                'store' => 'sliders.store',
+                'edit' => 'sliders.edit',
+                'update' => 'sliders.update',
+                'destroy' => 'sliders.destroy',
+                'show' => 'sliders.show',
+            ],'parameters' => ['{type}'=>'slider']
+            ]);
+            Route::resource('headers/{type}', 'HeadersController', ['names'=>[
+                'index' => 'headers.index',
+                'create' => 'headers.create',
+                'store' => 'headers.store',
+                'edit' => 'headers.edit',
+                'update' => 'headers.update',
+                'destroy' => 'headers.destroy',
+                'show' => 'headers.show',
+            ],'parameters' => ['{type}'=>'header']
+            ]);
 
         });
     });

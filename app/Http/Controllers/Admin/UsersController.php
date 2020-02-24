@@ -15,9 +15,11 @@ class UsersController extends Controller
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function index()
     {
+        $this->authorize('viewAny', User::class);
         $users = User::paginate(40);
         return view('admin.users.index', compact('users'));
     }
@@ -26,9 +28,11 @@ class UsersController extends Controller
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function create()
     {
+        $this->authorize('create', User::class);
         $roles = Role::all();
         return view('admin.users.add-edit', compact('roles'));
     }
@@ -42,6 +46,8 @@ class UsersController extends Controller
      */
     public function store(Request $request)
     {
+        $this->authorize('create', User::class);
+
         $rules = [
 
             'name' => 'required',
@@ -54,7 +60,6 @@ class UsersController extends Controller
         $validator = Validator::make($request->all(), $rules);
 
         if($validator->validate()){
-            $this->authorize('create', User::class);
             if(! Auth::user()->isAdmin()){
                 $request->request->add(['role_id' => Role::where(['name'=>'user'])->first() ? Role::where(['name'=>'user'])->first()->id : 0]);
             }
@@ -91,13 +96,15 @@ class UsersController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function edit($id)
     {
         $roles = Role::get();
         $user = User::find($id);
+        $this->authorize('update', $user);
         return view('admin.users.add-edit', compact('roles', 'user'));
     }
 
@@ -112,6 +119,8 @@ class UsersController extends Controller
     public function update(Request $request, $id)
     {
         $user = User::find($id);
+        $this->authorize('update', $user);
+
         $rules = [
 
             'name' => 'required',
@@ -123,7 +132,6 @@ class UsersController extends Controller
         $validator = Validator::make($request->all(), $rules);
 
         if($validator->validate()){
-            $this->authorize('update', $user);
 
             $user->update($request->except(['password', 'role_id']));
             if($request->filled('role_id') && Auth::user()->isAdmin()){

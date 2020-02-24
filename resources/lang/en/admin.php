@@ -1,5 +1,13 @@
 <?php
 return [
+    'sliders' => [
+        'top' => 'Top Slider',
+        'title' => 'Sliders',
+        'slider' => 'Slider',
+        'type' => "Media Type",
+        'source' => "Media Source",
+        'value' => "Media Value",
+    ],
     'actions' => [
         'add' => ':attr Added Successfully.',
         'edit' => ':attr Updated Successfully.',
@@ -12,11 +20,19 @@ return [
         'user' => 'Norma User'
     ],
     'general' => [
+        'image'=> 'Image',
+        'video'=> 'Video',
+        'upload' => "Uploaded File",
+        'file_upload'=> 'File Upload',
+        'file'=> 'File',
+        'link'=> 'Link',
+        'the_link'=> 'The Link',
         'title' => 'Construction Website',
         'menu' => 'Menu',
         'sure' => 'Are You Sure ?',
         'confirm?' => 'Once Deleted You cannot undo this action',
         'confirm' => 'Confirm',
+        'main_page' => 'Main Page',
         'cancel' => 'Cancel',
         'dashboard' => 'Dashboard',
         'search' => 'Search',
