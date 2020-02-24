@@ -141,6 +141,14 @@
                         </a>
                     </li>
                     @endif
+                    @if(Auth::user()->can('viewAny', App\Models\Project::class))
+                    <li>
+                        <a href="{{route('admin.projects.index')}}" class="waves-effect">
+                            <i class="mdi mdi-diamond"></i>
+                            <span> {{__('admin.general.projects')}}</span>
+                        </a>
+                    </li>
+                    @endif
                     <li class="has_sub"><a href="javascript:void(0);" class="waves-effect"><i class="mdi mdi-album"></i>
                             <span> UI Elements</span>
                             <span class="pull-right"><i class="mdi mdi-plus"></i></span>

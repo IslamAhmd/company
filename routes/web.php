@@ -19,6 +19,8 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => [ 'l
         Route::group(['middleware'=>'admin'], function () {
             Route::get('/', 'LandingController@index')->name('index');
             Route::resource('users', 'UsersController');
+            Route::resource('projects', 'ProjectsController');
+
         });
     });
 

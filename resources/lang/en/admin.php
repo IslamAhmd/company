@@ -38,6 +38,23 @@ return [
         'actions' => 'Actions',
         'enter' => "Enter your ",
         'submit' => "Submit",
+        'projects' => 'Projects',
+        'project' => 'Project',
+        'logo' => 'Logo',
+        'media' => 'Media',
+        'title' => 'Title',
+        'body' => 'Body',
+        'article_media' => 'Article Media',
+        'article_title' => 'Article Title',
+        'article_body' => 'Article Body',
+        'service_body' => 'Service Body',
+        'status' => 'Status',
+        'show_link' => 'Show Link',
+        'message' => 'Message',
+        'lang' => 'Language',
+        'ends_at' => 'Ends At',
+        'ar' => 'Arabic',
+        'en' => 'English'
     ],
     'users' => [
 
