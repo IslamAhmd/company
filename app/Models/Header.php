@@ -6,5 +6,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class Header extends Model
 {
-    //
+    protected $fillable = ['type', 'text', 'link', 'pic', 'lang'];
 }

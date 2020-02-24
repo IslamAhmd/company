@@ -134,31 +134,37 @@
                             </span>
                         </a></li>
                     @if(Auth::user()->can('viewAny', App\Models\User::class))
-                    <li>
-                        <a href="{{route('admin.users.index')}}" class="waves-effect">
-                            <i class="mdi mdi-diamond"></i>
-                            <span> {{__('admin.general.users')}}</span>
-                        </a>
-                    </li>
+                        <li>
+                            <a href="{{route('admin.users.index')}}" class="waves-effect">
+                                <i class="mdi mdi-diamond"></i>
+                                <span> {{__('admin.general.users')}}</span>
+                            </a>
+                        </li>
                     @endif
                     @if(Auth::user()->can('viewAny', App\Models\Project::class))
-                    <li>
-                        <a href="{{route('admin.projects.index')}}" class="waves-effect">
-                            <i class="mdi mdi-diamond"></i>
-                            <span> {{__('admin.general.projects')}}</span>
-                        </a>
-                    </li>
+                        <li>
+                            <a href="{{route('admin.projects.index')}}" class="waves-effect">
+                                <i class="mdi mdi-diamond"></i>
+                                <span> {{__('admin.general.projects')}}</span>
+                            </a>
+                        </li>
                     @endif
                     @if (Auth::user()->isAdmin() || Auth::user()->isSupervisor())
 
-                    <li class="has_sub"><a href="javascript:void(0);" class="waves-effect"><i class="mdi mdi-album"></i>
-                            <span>{{__('admin.general.main_page')}}</span>
-                            <span class="pull-right"><i class="mdi mdi-plus"></i></span>
-                        </a>
-                        <ul class="list-unstyled">
-                            <li><a href="{{route('admin.sliders.index', ['type' => 0])}}">{{__('admin.sliders.top')}}</a></li>
-                        </ul>
-                    </li>
+                        <li class="has_sub"><a href="javascript:void(0);" class="waves-effect"><i class="mdi mdi-album"></i>
+                                <span>{{__('admin.general.main_page')}}</span>
+                                <span class="pull-right"><i class="mdi mdi-plus"></i></span>
+                            </a>
+                            <ul class="list-unstyled">
+                                @if(Auth::user()->can('viewAny', App\Models\Slider::class))
+                                    <li><a href="{{route('admin.sliders.index', ['type' => 0])}}">{{__('admin.sliders.top')}}</a></li>
+                                @endif
+                                @if(Auth::user()->can('viewAny', App\Models\Header::class))
+                                    <li><a href="{{route('admin.headers.index', ['type' => 0])}}">{{__('admin.headers.top')}}</a></li>
+                                @endif
+
+                            </ul>
+                        </li>
 
                     @endif
                 </ul>

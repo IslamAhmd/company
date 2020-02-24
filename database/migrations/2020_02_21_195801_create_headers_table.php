@@ -17,6 +17,7 @@ class CreateHeadersTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedInteger('type');
             $table->string('pic');
+            $table->string('lang');
             $table->text('text');
             $table->string('link')->nullable();
             $table->timestamps();

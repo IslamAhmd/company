@@ -1,5 +1,10 @@
 <?php
 return [
+    'headers' => [
+      'top' => 'Top Header',
+        'title' => 'Headers',
+        'header' => 'Header',
+    ],
     'sliders' => [
         'top' => 'Top Slider',
         'title' => 'Sliders',
@@ -27,6 +32,9 @@ return [
         'file'=> 'File',
         'link'=> 'Link',
         'the_link'=> 'The Link',
+        'the_text'=> 'The Text',
+        'text'=> 'Text',
+        'in'=> 'In',
         'title' => 'Construction Website',
         'menu' => 'Menu',
         'sure' => 'Are You Sure ?',

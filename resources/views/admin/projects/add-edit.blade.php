@@ -122,7 +122,7 @@
                                     <label class="col-sm-2 control-label">{{__('admin.general.show_link')}} </label>
                                     <div class="col-sm-1">
                                         <input type="checkbox" class="form-control @error('show_link') parsley-error @enderror"
-                                               name="show_link"                                       
+                                               name="show_link"
                                                value="{{isset($project)? $project->show_link : 0}}">
                                         @error('show_link')
                                         <span class="help-block text-danger"><small>{{$message}}.</small></span>
@@ -157,7 +157,7 @@
                                         @enderror
                                     </div>
                                 </div>
-                                
+
                                 <div class="form-group">
                                     <label class="col-sm-2 control-label">{{__('admin.general.logo')}} </label>
                                     <div class="col-sm-10">
