@@ -18,19 +18,25 @@ class HeaderPolicy
      */
     public function viewAny(User $user)
     {
-        //
+        if ($user->isAdmin() || $user->isSupervisor()){
+            return true;
+        }
+        return false;
     }
 
     /**
      * Determine whether the user can view the app models header.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\AppModelsHeader  $appModelsHeader
+     * @param  \App\Header  $header
      * @return mixed
      */
-    public function view(User $user, AppModelsHeader $appModelsHeader)
+    public function view(User $user, Header $header)
     {
-        //
+        if ($user->isAdmin() || $user->isSupervisor()){
+            return true;
+        }
+        return false;
     }
 
     /**
@@ -41,54 +47,69 @@ class HeaderPolicy
      */
     public function create(User $user)
     {
-        //
+        if ($user->isAdmin() || $user->isSupervisor()){
+            return true;
+        }
+        return false;
     }
 
     /**
      * Determine whether the user can update the app models header.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\AppModelsHeader  $appModelsHeader
+     * @param  \App\Header  $header
      * @return mixed
      */
-    public function update(User $user, AppModelsHeader $appModelsHeader)
+    public function update(User $user, Header $header)
     {
-        //
+        if ($user->isAdmin() || $user->isSupervisor()){
+            return true;
+        }
+        return false;
     }
 
     /**
      * Determine whether the user can delete the app models header.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\AppModelsHeader  $appModelsHeader
+     * @param  \App\Header  $header
      * @return mixed
      */
-    public function delete(User $user, AppModelsHeader $appModelsHeader)
+    public function delete(User $user, Header $header)
     {
-        //
+        if ($user->isAdmin() || $user->isSupervisor()){
+            return true;
+        }
+        return false;
     }
 
     /**
      * Determine whether the user can restore the app models header.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\AppModelsHeader  $appModelsHeader
+     * @param  \App\Header  $header
      * @return mixed
      */
-    public function restore(User $user, AppModelsHeader $appModelsHeader)
+    public function restore(User $user, Header $header)
     {
-        //
+        if ($user->isAdmin() || $user->isSupervisor()){
+            return true;
+        }
+        return false;
     }
 
     /**
      * Determine whether the user can permanently delete the app models header.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\AppModelsHeader  $appModelsHeader
+     * @param  \App\Header  $header
      * @return mixed
      */
-    public function forceDelete(User $user, AppModelsHeader $appModelsHeader)
+    public function forceDelete(User $user, Header $header)
     {
-        //
+        if ($user->isAdmin() || $user->isSupervisor()){
+            return true;
+        }
+        return false;
     }
 }

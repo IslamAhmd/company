@@ -22,7 +22,7 @@ class RedirectIfAuthenticated
             if((Auth::user()->isAdmin() || Auth::user()->isSupervisor()) && Str::contains($request->url(), 'admin')){
                 return redirect(route('admin.index'));
             }
-            return redirect('/home');
+            return redirect('/');
         }
 
         return $next($request);

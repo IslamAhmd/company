@@ -1,5 +1,11 @@
 <?php
 return [
+    'headers' => [
+        'top' => 'الهيدر العلوى',
+        'title' => 'الهيدرز',
+        'header' => 'هيدر',
+
+    ],
     'sliders' => [
         'top' => 'السلايدر العلوى',
         'title' => 'السلايدرز',
@@ -29,6 +35,9 @@ return [
         'file'=> 'الملف',
         'link'=> 'رابط',
         'the_link'=> 'الرابط',
+        'the_text'=> 'النص',
+        'text'=> 'النص',
+        'in'=> 'بــ',
         'title' => 'Construction Website',
         'menu' => 'القائمة',
         'sure' => 'متأكد ؟',
