@@ -1,0 +1,83 @@
+
+body,html{
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.searchbar{
+    margin-top: 10px;
+    margin-bottom: auto;
+    margin-left: auto;
+    height: 60px;
+    background-color: #353b48;
+    border-radius: 30px;
+    padding: 10px;
+    z-index: 2;
+}
+
+.search_input{
+    color: white;
+    border: 0;
+    outline: 0;
+    background: none;
+    width: 450px;
+    caret-color:transparent;
+    line-height: 40px;
+    transition: width 0.4s linear;
+}
+
+.searchbar:hover > .search_input{
+    padding: 0 10px;
+    width: 450px;
+    caret-color:rgba(0, 153, 255, 1);
+    transition: width 0.4s linear;
+}
+
+.searchbar:hover > .search_icon{
+    background: white;
+    color: rgba(0, 153, 255, 1);
+}
+
+.search_icon{
+    height: 40px;
+    width: 40px;
+    float: right;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    color:white;
+    text-decoration:none;
+}
+
+/* Top Head in landing page*/
+.top-head {
+    height: 70vh;
+    margin-top: -70px;
+    overflow: hidden;
+}
+.slick-list {
+    height: 100% !important;
+}
+.slick-track {
+    height: 100% !important;
+}
+.slick-next {
+    right: 10px !important;
+    z-index: 2;
+    width:40px;
+    height:40px;
+}
+.slick-prev {
+    left: 10px !important;
+    z-index: 2;
+    width:40px;
+    height:40px;
+}
+.slick-prev:before, .slick-next:before{
+    font-size: 40px !important;
+    color: rgba(0, 153, 255, 1);
+
+}

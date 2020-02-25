@@ -43,12 +43,9 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => [ 'l
 
         });
     });
-
-    Route::get('/', function () {
-        return view('welcome');
+    Route::group(['as'=>'web.', 'namespace'=>'Web'], function () {
+        Route::get('/', 'LandingController@index')->name('landing');
+        Auth::routes();
     });
-
-    Auth::routes();
-
-    Route::get('/home', 'HomeController@index')->name('home');
+//    Route::get('/home', 'HomeController@index')->name('home');
 });
