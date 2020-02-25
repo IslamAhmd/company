@@ -35,39 +35,21 @@
                                 <thead>
                                 <tr>
                                     <th>{{__('admin.general.name')}}</th>
-                                    <th>{{__('admin.general.logo')}}</th>
-                                    <!-- <th>{{__('admin.general.media')}}</th> -->
-                                    <!-- <th>{{__('admin.general.title')}}</th> -->
-                                    <!-- <th>{{__('admin.general.body')}}</th> -->
-                                    <!-- <th>{{__('admin.general.article_media')}}</th> -->
-                                    <!-- <th>{{__('admin.general.article_title')}}</th> -->
-                                    <!-- <th>{{__('admin.general.article_body')}}</th> -->
-                                    <!-- <th>{{__('admin.general.service_body')}}</th> -->
+                                    <!-- <th>{{__('admin.general.logo')}}</th> -->
                                     <th>{{__('admin.general.status')}}</th>
-                                    <!-- <th>{{__('admin.general.show_link')}}</th> -->
-                                    <!-- <th>{{__('admin.general.message')}}</th> -->
-                                    <!-- <th>{{__('admin.general.lang')}}</th> -->
                                     <th>{{__('admin.general.ends_at')}}</th>
                                     <th>{{__('admin.general.actions')}}</th>
                                 </tr>
                                 </thead>
                                 <tbody>
                                 @foreach($projects as $project)
-                                    @if(Gate::allows('view', $project))
+                                    @if(Gate::allows('view', $project->user))
+
                                     <tr>
                                         <td>{{$project->name}}</td>
-                                        <td>{{$project->logo}}</td>
-                                        <!-- <td>{{$project->media}}</td> -->
-                                        <!-- <td>{{$project->title}}</td> -->
-                                        <!-- <td>{{$project->body}}</td> -->
-                                        <!-- <td>{{$project->article_media}}</td> -->
-                                        <!-- <td>{{$project->article_title}}</td> -->
-                                        <!-- <td>{{$project->article_body}}</td> -->
-                                        <!-- <td>{{$project->service_body}}</td> -->
+                                        <!-- <td><img src="{{URL::asset('/data/' . $project->name . '/' . $project->logo)}}" class="css-class" width="15%" height="10%" alt="alt text">
+                                        </td> -->
                                         <td>{{$project->status}}</td>
-                                        <!-- <td>{{$project->show_link}}</td> -->
-                                        <!-- <td>{{$project->message}}</td> -->
-                                        <!-- <td>{{$project->lang}}</td> -->
                                         <td>{{$project->ends_at}}</td>
                                         <td>
                                             <a href="{{ route('admin.projects.edit' , $project->id) }}" class="btn btn-primary btn-sm pull-left">
@@ -87,7 +69,9 @@
                                             @csrf
                                         </form>
                                     </tr>
+                                    
                                     @endif
+
                                 @endforeach
                                 </tbody>
                             </table>

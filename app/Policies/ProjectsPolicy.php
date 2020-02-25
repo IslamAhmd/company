@@ -6,7 +6,7 @@ use App\Models\User;
 use App\Project;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class ProjectPolicy
+class ProjectsPolicy
 {
     use HandlesAuthorization;
     
@@ -18,10 +18,7 @@ class ProjectPolicy
      */
     public function viewAny(User $user)
     {
-        if ($user->isAdmin() || $user->isSupervisor()){
-            return true;
-        }
-        return false;
+        return $user->isAdmin() || $user->isSupervisor();
     }
 
     /**
@@ -33,15 +30,7 @@ class ProjectPolicy
      */
     public function view(User $user, Project $project)
     {
-        if ($user->isAdmin()){
-            return true;
-        }
-        if($user->isSupervisor()){
-            if(! $model->isAdmin()){
-                return true;
-            }
-        }
-        return false;
+        return $user->isAdmin() || $user->isSupervisor();
     }
 
     /**
@@ -64,16 +53,7 @@ class ProjectPolicy
      */
     public function update(User $user, Project $project)
     {
-        if ($user->isAdmin()){
-            return true;
-        }
-        if($user->isSupervisor()){
-            if(! $model->isAdmin()){
-                return true;
-            }
-        }
-        return false;
-
+        return $user->isAdmin() || $user->isSupervisor();
     }
 
     /**
@@ -83,17 +63,9 @@ class ProjectPolicy
      * @param  \App\Project  $project
      * @return mixed
      */
-    public function delete(User $user, Project $project)
+    public function delete(User $user)
     {
-        if ($user->isAdmin()){
-            return true;
-        }
-        if($user->isSupervisor()){
-            if(! $model->isAdmin()){
-                return true;
-            }
-        }
-        return false; 
+        return $user->isAdmin() || $user->isSupervisor();
     }
 
     /**

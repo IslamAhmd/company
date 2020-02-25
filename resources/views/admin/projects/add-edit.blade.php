@@ -41,6 +41,28 @@
                                         @enderror
                                     </div>
                                 </div>
+
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">{{__('admin.general.logo')}} </label>
+                                    <div class="col-sm-10">
+                                        <input name="logo" type="file" class="form-control @error('logo') parsley-error @enderror"
+                                               value="{{isset($project->id)? $project->logo : null}}">
+                                        @error('logo')
+                                        <span class="help-block text-danger"><small>{{$message}}.</small></span>
+                                        @enderror
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">{{__('admin.general.media')}} </label>
+                                    <div class="col-sm-10">
+                                        <input multiple="multiple" name="media[]" type="file" class="form-control @error('media') parsley-error @enderror">
+                                        @error('media')
+                                        <span class="help-block text-danger"><small>{{$message}}.</small></span>
+                                        @enderror
+                                    </div>
+                                </div>
+
                                 <div class="form-group">
                                     <label class="col-md-2 control-label" for="title">{{__('admin.general.title')}} </label>
                                     <div class="col-md-10">
@@ -59,7 +81,7 @@
                                         <textarea type="text" class="form-control @error('body') parsley-error @enderror"
                                                placeholder="{{__('admin.general.enter')}} {{__('admin.general.body')}}"
                                                name="body"
-                                               value="{{isset($project)? $project->body : null}}"></textarea>
+                                               value="">{{isset($project->id)? $project->body : null}}</textarea>
                                         @error('body')
                                         <span class="help-block text-danger"><small>{{$message}}.</small></span>
                                         @enderror
@@ -85,8 +107,18 @@
                                         <textarea type="text" class="form-control @error('article_body') parsley-error @enderror"
                                                name="article_body"
                                                placeholder="{{__('admin.general.enter')}} {{__('admin.general.article_body')}}"
-                                               value="{{isset($project)? $project->article_body : null}}"></textarea>
+                                               value="">{{isset($project)? $project->article_body : null}}</textarea>
                                         @error('article_body')
+                                        <span class="help-block text-danger"><small>{{$message}}.</small></span>
+                                        @enderror
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">{{__('admin.general.article_media')}} </label>
+                                    <div class="col-sm-10">
+                                        <input multiple="multiple" name="article_media[]" type="file" class="form-control @error('article_media') parsley-error @enderror">
+                                        @error('article_media')
                                         <span class="help-block text-danger"><small>{{$message}}.</small></span>
                                         @enderror
                                     </div>
@@ -98,7 +130,7 @@
                                         <textarea type="text" class="form-control @error('service_body') parsley-error @enderror"
                                                name="service_body"
                                                placeholder="{{__('admin.general.enter')}} {{__('admin.general.service_body')}}"
-                                               value="{{isset($project)? $project->service_body : null}}"></textarea>
+                                               value="">{{isset($project)? $project->service_body : null}}</textarea>
                                         @error('service_body')
                                         <span class="help-block text-danger"><small>{{$message}}.</small></span>
                                         @enderror
@@ -136,7 +168,7 @@
                                         <textarea type="text" class="form-control @error('message') parsley-error @enderror"
                                                name="message"
                                                placeholder="{{__('admin.general.enter')}} {{__('admin.general.message')}}"
-                                               value="{{isset($project)? $project->message : null}}"></textarea>
+                                               value="">{{isset($project)? $project->message : null}}</textarea>
                                         @error('message')
                                         <span class="help-block text-danger"><small>{{$message}}.</small></span>
                                         @enderror
@@ -148,26 +180,29 @@
                                     <div class="col-sm-10">
                                         <select class="form-control @error('lang') parsley-error @enderror"
                                                name="lang">
-                                                   <option value="{{isset($project)? $project->lang : null}}">{{ __('admin.general.ar) }}</option>
+                                                   <option value="{{__('admin.general.ar')}}">{{ __('admin.general.ar') }}</option>
 
-                                                   <option value="{{isset($project)? $project->lang : null}}">{{ __('admin.general.en) }}</option>
+                                                   <option value="{{__('admin.general.en')}}">{{ __('admin.general.en') }}</option>
+
                                         </select>
                                         @error('lang')
                                         <span class="help-block text-danger"><small>{{$message}}.</small></span>
                                         @enderror
                                     </div>
                                 </div>
-                                
+
                                 <div class="form-group">
-                                    <label class="col-sm-2 control-label">{{__('admin.general.logo')}} </label>
+                                    <label class="col-sm-2 control-label">{{__('admin.general.ends_at')}} </label>
                                     <div class="col-sm-10">
-                                        <input name="logo" type="file" class="form-control @error('logo') parsley-error @enderror"
-                                               value="{{isset($project->id)? $project->logo : null}}">
-                                        @error('logo')
+                                        <input type="datetime-local" class="form-control @error('ends_at') parsley-error @enderror"
+                                               name="ends_at"                                       
+                                               value="{{isset($project)? $project->ends_at : 0}}">
+                                        @error('ends_at')
                                         <span class="help-block text-danger"><small>{{$message}}.</small></span>
                                         @enderror
                                     </div>
                                 </div>
+                                
                                 <div class="form-group text-center">
                                     <button type="submit" class="btn btn-primary">{{__('admin.general.submit')}}</button>
                                 </div>
