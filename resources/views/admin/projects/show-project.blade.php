@@ -42,8 +42,7 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @foreach($projects as $project)
-                                    @if(Gate::allows('view', $project->user))
+                                
 
                                     <tr>
                                         <td>{{$project->name}}</td>
@@ -76,13 +75,10 @@
                                         </form>
                                     </tr>
                                     
-                                    @endif
-
-                                @endforeach
+                                    
                                 </tbody>
                             </table>
                             <div class="text-center">
-                                {{$projects->links()}}
                             </div>
                         </div>
                     </div>
@@ -94,22 +90,4 @@
 @section('scripts')
     @include('admin.partials.datatable_scripts')
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-    <script>
-        function deleteproject(project_id){
-            swal({
-                title: "{{__('admin.general.sure')}}",
-                text: "{{__('admin.general.confirm?')}}",
-                icon: "warning",
-                buttons: ['{{__('admin.general.cancel')}}', '{{__('admin.general.confirm')}}'],
-                dangerMode: true,
-            })
-                .then((willDelete) => {
-                    if (willDelete) {
-                        $('#delete-'+project_id).submit();
-                    } else {
-                        return false;
-                    }
-                });
-        }
-    </script>
 @endsection

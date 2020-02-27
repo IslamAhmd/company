@@ -78,7 +78,8 @@ return [
         'lang' => 'Language',
         'ends_at' => 'Ends At',
         'ar' => 'Arabic',
-        'en' => 'English'
+        'en' => 'English',
+        'show' => 'Show'
     ],
     'users' => [
 

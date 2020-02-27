@@ -35,6 +35,8 @@ class ProjectsController extends Controller
      */
     public function create()
     {
+        $this->authorize('create', User::class);
+
         return view('admin.projects.add-edit');
     }
 
@@ -71,7 +73,6 @@ class ProjectsController extends Controller
             $this->authorize('create', User::class);
 
             File::makeDirectory(public_path('/data/') . $request->name);
-
 
             $medias = [];
             if($files = $request->file('media')){
@@ -126,8 +127,13 @@ class ProjectsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id)
-    {
-        
+    {   
+        $this->authorize('view', User::class);
+
+        $project = Project::find($id);
+
+        return view('admin.projects.show-project', compact('project'));
+
     }
 
     /**
@@ -177,13 +183,9 @@ class ProjectsController extends Controller
         $this->authorize('update', $project->user);
 
         if($validator->validate()){
-            $oldName = $project->name;
-            if(file_exists(public_path('/data/' . $oldName))){
 
-                File::move(public_path('/data/' . $oldName), public_path('/data/' . $request->name));
-
-            }
-
+            File::deleteDirectory(public_path('/data/' . $project->name));
+            File::makeDirectory(public_path('/data/') . $request->name);
 
             $medias = [];
             if($files = $request->file('media')){
@@ -241,7 +243,7 @@ class ProjectsController extends Controller
     {
         $project = Project::find($id);
 
-        $this->authorize('update', $project->user);
+        $this->authorize('delete', User::class);
 
         File::deleteDirectory(public_path('/data/' . $project->name));
 

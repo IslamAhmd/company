@@ -30,7 +30,7 @@ class UserPolicy
      * @param User $model
      * @return mixed
      */
-    public function view(User $user, User $model)
+    public function view(User $user)
     {
         if ($user->isAdmin()){
             return true;

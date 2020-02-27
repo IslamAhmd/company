@@ -28,7 +28,7 @@ class ProjectsPolicy
      * @param  \App\Project  $project
      * @return mixed
      */
-    public function view(User $user, Project $project)
+    public function view(User $user)
     {
         return $user->isAdmin() || $user->isSupervisor();
     }
@@ -51,7 +51,7 @@ class ProjectsPolicy
      * @param  \App\Project  $project
      * @return mixed
      */
-    public function update(User $user, Project $project)
+    public function update(User $user)
     {
         return $user->isAdmin() || $user->isSupervisor();
     }
